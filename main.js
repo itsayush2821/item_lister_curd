@@ -17,6 +17,16 @@ function addItem(e){
   var newItem = document.getElementById('item').value;
   var newItemDesc = document.getElementById('desc').value;
 
+   var item = newItem+" "+newItemDesc
+   let itemLists = []
+   if(JSON.parse(localStorage.getItem('itemList'))!=null){
+    let getList = JSON.parse(localStorage.getItem('itemList'))
+    getList.push(item)
+    localStorage.setItem('itemList', JSON.stringify(getList))
+   }else{
+      itemLists.push(item)
+      localStorage.setItem('itemList' , JSON.stringify(itemLists) )
+   }
   // Create new li element
   var li = document.createElement('li');
   // Add class
@@ -46,8 +56,7 @@ function addItem(e){
   // Append li to list
   itemList.appendChild(li);
 
-   newItem.textContent=''
-   newItemDesc.textContent=''
+
 }
 
 // Remove item
